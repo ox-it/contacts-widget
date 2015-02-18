@@ -1,6 +1,26 @@
 var contact_search =
 {
+    search: function(params) {
+            //do the query
+            var nameTerm = "q=" + params.initial + "%20" + params.lastname;
+            var mediumTerm = "medium=" + params.medium;
+            var exactTerm = "exact=" + params.exact;
 
+            var query = nameTerm + "&" + mediumTerm + "&" + exactTerm;
+            var url = this.url + query;
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                success: this.displayResults.bind(this),
+                failure: function(response) {
+                    console.error("Failed to retrieve contact results");
+                }
+            });
+
+            console.log(query);
+    },
     create_form : function (params) {
         this.el = params.el;
         this.prefill = params.prefill;
@@ -48,7 +68,26 @@ var contact_search =
         this.el.append($form_container);
 
         this.bind_events();
+
+        if(params.prefill) {
+            //fill in the form
+            if(params.prefill.initial) {
+                $('input#initial', this.el).val(params.prefill.initial);
+            } else { params.prefill.initial = ""; }
+            if(params.prefill.lastname) {
+                $('input#lastname', this.el).val(params.prefill.lastname);
+            } else { params.prefill.lastname = ""; }
+            if(params.prefill.exact) {
+                if(params.prefill.exact == 'false') {
+                    $('input#exact2').attr('checked', 'checked');
+                }
+            } else { params.prefill.exact = true; }
+            //default to email
+            if(!params.prefill.medium) { params.prefill.medium = 'email' }
+            this.search(params.prefill);
+        }
     },
+
     bind_events : function () {
         //record which button was clicked on submit button click
         $( 'input[type=submit]' , $('#contact_form')).click( function() {
@@ -65,26 +104,9 @@ var contact_search =
             var initial = $('input#initial', $(ev.target)).val();
             var exact = $('input#exact1').is(':checked');
             var medium = $(ev.target).data('medium');
+            var params = { lastname: lastname, initial: initial, exact: exact=='exact', medium: medium };
+            this.search(params).bind(this);
 
-            //do the query
-            var nameTerm = "q=" + initial + "%20" + lastname;
-            var mediumTerm = "medium=" + medium;
-            var exactTerm = exact=='exact' ? "exact=true" : "exact=false";
-
-            var query = nameTerm + "&" + mediumTerm + "&" + exactTerm;
-            var url = this.url + query;
-
-            $.ajax({
-                url: url,
-                type: 'get',
-                dataType: 'json',
-                success: this.displayResults.bind(this),
-                failure: function(response) {
-                    console.error("Failed to retrieve contact results");
-                }
-            });
-
-            console.log(query);
         }.bind(this));
 
     },

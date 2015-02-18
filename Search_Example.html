@@ -14,51 +14,20 @@
 
 
 <body>
-<div id="block-block-73" class="block block-block contact-search block-block-73 ">
-    <div id="contactsearchcontainer">
-      <div id="contactsearch">
-        <h2>Contact search</h2>
-        <form method="get" action="http://www.ox.ac.uk/applications/contact_search/index.rm?site=staffgateway">
-          <div id="searchbox">
-            <div class="form-item name-details">
-              <div class="lastname-container">
-                <label for="lastname" class="required">Surname</label>
-                <input class="full" type="text" name="lastname" id="lastname" placeholder="E.g. Smith" value=""></div>
-              <div class="initial-container">
-                <label for="initial" class="optional">Initial</label>
-                <input class="full" type="text" name="initial" id="initial" placeholder="E.g. J" value=""></div>
-            </div>
-            <div class="form-item search-specifics">
-              <label for="exact1" class="radio">
-                <input type="radio" name="exact" class="radio" value="true" id="exact1" checked="checked">
-                Exact
-              </label>
-              <label for="exact2" class="radio second">
-              <input type="radio" name="exact" class="radio" value="false" id="exact2">
-                Approximate
-              </label>
-              <input type="hidden" name="site" id="search-type" value="staffgateway"></div>
-            <div class="form-item">
-              <input type="submit" name="find_email" alt="Find email address" value="Email"><input type="submit" name="find_phone" alt="Find telephone numbers" value="Phone">
-            </div>
-            <div class="emergency-nums">
-              <a href="http://www.admin.ox.ac.uk/ouss/contactus/" name="emergency_numbers" title="Emergency numbers" id="emergency_numbers"><span class="exclamation"></span>Emergency numbers</a>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-</div>
-
-<br><br>
-
 <div class="block block-block contact-search block-block-73">
 <div id="mycontactdiv"></div>
 </div>
 
 <script type="text/javascript">
     var params = {
-      el : $('#mycontactdiv')
+      el : $('#mycontactdiv'),   //div in which to place the contact search widget
+//      url : 'http://staging.api.m.ox.ac.uk/contact/search?', //optionally override the url used for search
+      prefill : {               //provide this object to perform a search immediately
+          lastname : "Smith",
+          initial : "J",
+          exact : "true",       // if false, then approximate
+          medium : "phone"      // 'phone' or 'email'
+      }
     };
     contact_search.create_form(params);
 </script>
