@@ -171,20 +171,37 @@ var contact_search =
         //create page browsing links
         var $pageLinks = $("<div class='page-links'></div>");
         $results.append($pageLinks);
-        var numPages = Math.ceil(this.persons.length / this.pageSize);
-        for (var i=0; i<numPages; i++) {
+        var $prevPage = $("<a class='prev-page-link' id='prev-page' href='#'>Prev</a>");
+        $prevPage.click(this.prevPage.bind(this));
+        var $nextPage = $("<a class='next-page-link' id='next-page' href='#'>Next</a>");
+        $nextPage.click(this.nextPage.bind(this));
+        $pageLinks.append($prevPage);
+        this.numPages = Math.ceil(this.persons.length / this.pageSize);
+        for (var i=0; i<this.numPages; i++) {
             var $link = $("<a class='page-link' id='page_" + i + "' href='#'>" + (i+1) + "</a>");
             $link.click(this.onClickPageLink.bind(this));
             $link.data('page', i);
             $pageLinks.append($link);
         }
-        var $pageCounter = ($("<p> Page <span class='currentPage'>0</span> of " + numPages + "</p>"));
+        $pageLinks.append($nextPage);
+        var $pageCounter = ($("<p> Page <span class='currentPage'>0</span> of " + this.numPages + "</p>"));
         $results.append($pageCounter.clone());
         $resultsHeader.append($pageCounter);
 
+        this.currentPage = 0;
 
         //show the first page of results
         this.displayResultsPage(0);
+    },
+    prevPage : function(ev) {
+        ev.preventDefault();
+        this.currentPage--
+        this.displayResultsPage(this.currentPage);
+    },
+    nextPage : function(ev) {
+        ev.preventDefault();
+        this.currentPage++;
+        this.displayResultsPage(this.currentPage);
     },
     onClickPageLink : function(ev) {
         ev.preventDefault();
@@ -193,6 +210,8 @@ var contact_search =
     },
     // Display the given page of results. count=results per page, start=0-index page number
     displayResultsPage : function(startPage) {
+        this.currentPage = startPage;
+
         var first_shown_result = this.pageSize * startPage;
         //hide all but the relevant results
         $('.person_entry').hide();
@@ -203,10 +222,26 @@ var contact_search =
                 $(id).show();
             }
         }
+
         //show current page on pagination links
         $('a.page-link').removeClass('isCurrent');
         $('a#page_' + i).addClass('isCurrent');
         $('.currentPage').text(startPage+1);
+
+        //disable prev/next links as appropriate
+        var $prev = $('a.prev-page-link');
+        if(this.currentPage == 0) {
+            $prev.removeAttr('href');
+        } else {
+            $prev.attr('href', '#');
+        }
+
+        var $next = $('a.next-page-link')
+        if(this.currentPage >= this.numPages-1) {
+            $next.removeAttr('href');
+        } else {
+            $next.attr('href', '#');
+        }
     }
 
 
