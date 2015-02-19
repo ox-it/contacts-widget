@@ -14,6 +14,7 @@ var contact_search =
                 type: 'get',
                 dataType: 'json',
                 success: this.displayResults.bind(this),
+
                 failure: function(response) {
                     console.error("Failed to retrieve contact results");
                 }
@@ -25,6 +26,7 @@ var contact_search =
         this.el = params.el;
         this.prefill = params.prefill;
         this.url = params.url? params.url : 'http://api.m.ox.ac.uk/contact/search?';
+        this.pageSize = params.pageSize ? params.pageSize : 10;
 
         var $form_container = $("<div class='contactsearch'></div>");
         $form_container.append('<h2>Contact search</h2>');
@@ -111,6 +113,7 @@ var contact_search =
 
     },
     displayResults : function(response) {
+        this.persons = response.persons;
         //create results div if it doesn't already exist
         var $results = $('.contact-results', this.el);
         if($results.length <= 0) {
@@ -121,8 +124,10 @@ var contact_search =
         else {
             $results.empty();
         }
-        $results.append($("<h2>Results</h2>"));
-        $results.append($("<p>Found " + response.persons.length + " entries</p>"));
+        var $resultsHeader = $("<div class='results-header'></div>");
+        $results.append($resultsHeader);
+        $resultsHeader.append($("<h2>Results</h2>"));
+        $resultsHeader.append($("<p>Found " + response.persons.length + " entries</p>"));
         var $list = $("<ul></ul>");
         $results.append($list);
 
@@ -131,7 +136,7 @@ var contact_search =
         for(var i=0; i<response.persons.length; i++) {
 
             var person = response.persons[i];
-            var $entry = $("<li id='person_" + (i+1) + "'></li>");
+            var $entry = $("<li id='person_" + (i+1) + "' class='person_entry'></li>");
 
             $list.append($entry);
             //name
@@ -161,11 +166,49 @@ var contact_search =
                 }
                 $entry.append($phone);
             }
-
         }
 
+        //create page browsing links
+        var $pageLinks = $("<div class='page-links'></div>");
+        $results.append($pageLinks);
+        var numPages = Math.ceil(this.persons.length / this.pageSize);
+        for (var i=0; i<numPages; i++) {
+            var $link = $("<a class='page-link' id='page_" + i + "' href='#'>" + (i+1) + "</a>");
+            $link.click(this.onClickPageLink.bind(this));
+            $link.data('page', i);
+            $pageLinks.append($link);
+        }
+        var $pageCounter = ($("<p> Page <span class='currentPage'>0</span> of " + numPages + "</p>"));
+        $results.append($pageCounter.clone());
+        $resultsHeader.append($pageCounter);
 
+
+        //show the first page of results
+        this.displayResultsPage(0);
+    },
+    onClickPageLink : function(ev) {
+        ev.preventDefault();
+        var page = $(ev.target).data('page');
+        this.displayResultsPage(page);
+    },
+    // Display the given page of results. count=results per page, start=0-index page number
+    displayResultsPage : function(startPage) {
+        var first_shown_result = this.pageSize * startPage;
+        //hide all but the relevant results
+        $('.person_entry').hide();
+        //unhide the relevant ones
+        for(var i=this.pageSize*startPage; i<this.pageSize*(startPage+1); i++) {
+            if (i<this.persons.length) {
+                var id = '#person_' + (i + 1);
+                $(id).show();
+            }
+        }
+        //show current page on pagination links
+        $('a.page-link').removeClass('isCurrent');
+        $('a#page_' + i).addClass('isCurrent');
+        $('.currentPage').text(startPage+1);
     }
+
 
 };
 
