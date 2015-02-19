@@ -4,7 +4,7 @@ var contact_search =
             //do the query
             var nameTerm = "q=" + params.initial + "%20" + params.lastname;
             var mediumTerm = "medium=" + params.medium;
-            var exactTerm = "exact=" + params.exact;
+            var exactTerm = "match=" + params.match;
 
             var query = nameTerm + "&" + mediumTerm + "&" + exactTerm;
             var url = this.url + query;
@@ -79,8 +79,8 @@ var contact_search =
             if(params.prefill.lastname) {
                 $('input#lastname', this.el).val(params.prefill.lastname);
             } else { params.prefill.lastname = ""; }
-            if(params.prefill.exact) {
-                if(params.prefill.exact == 'false') {
+            if(params.prefill.match) {
+                if(params.prefill.match == 'approximate') {
                     $('input#exact2').attr('checked', 'checked');
                 }
             } else { params.prefill.exact = true; }
@@ -104,10 +104,10 @@ var contact_search =
             //extract values from the form to build our query
             var lastname = $('input#lastname', $(ev.target)).val();
             var initial = $('input#initial', $(ev.target)).val();
-            var exact = $('input#exact1').is(':checked');
+            var match = $('input#exact1').is(':checked') ? 'exact' : 'approximate';
             var medium = $(ev.target).data('medium');
-            var params = { lastname: lastname, initial: initial, exact: exact=='exact', medium: medium };
-            this.search(params).bind(this);
+            var params = { lastname: lastname, initial: initial, match: match, medium: medium };
+            this.search(params);
 
         }.bind(this));
 
@@ -236,7 +236,7 @@ var contact_search =
             $prev.attr('href', '#');
         }
 
-        var $next = $('a.next-page-link')
+        var $next = $('a.next-page-link');
         if(this.currentPage >= this.numPages-1) {
             $next.removeAttr('href');
         } else {
