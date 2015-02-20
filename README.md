@@ -5,7 +5,8 @@ The widget utilises the [Mobile Oxford Contact Search API](http://moxie-contacts
 
 ### Dependencies
 The widget makes use of jQuery to ensure maximum browser compatibility.
-This can be included [via a CDN](https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js) or provided by your own server.
+This can be included [via a CDN](https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js) or provided by your own server.
+For compatibility with IE<9, jQuery 1.11 should be used.
 
 In order to work on IE8 and IE9, it's also necessary to include a [jQuery plugin](https://github.com/MoonScript/jQuery-ajaxTransport-XDomainRequest) which enables cross-domain requests in IE.
 
