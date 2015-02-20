@@ -128,7 +128,7 @@ var contact_search =
         $results.append($resultsHeader);
         $resultsHeader.append($("<h2>Results</h2>"));
         $resultsHeader.append($("<p>Found " + response.persons.length + " entries</p>"));
-        var $list = $("<ul></ul>");
+        var $list = $("<ul class='contact-results-list'></ul>");
         $results.append($list);
 
 
@@ -184,7 +184,7 @@ var contact_search =
             $pageLinks.append($link);
         }
         $pageLinks.append($nextPage);
-        var $pageCounter = ($("<p> Page <span class='currentPage'>0</span> of " + this.numPages + "</p>"));
+        var $pageCounter = ($("<div class='results-pages'> Page <span class='currentPage'>0</span> of " + this.numPages + "</p>"));
         $results.append($pageCounter.clone());
         $resultsHeader.append($pageCounter);
 

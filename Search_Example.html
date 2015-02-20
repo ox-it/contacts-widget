@@ -8,7 +8,7 @@
     <!--<link rel="stylesheet" href="http://www.ox.ac.uk/sites/files/oxford/css/css_h4M82ZY4NZus0GrS3DOkcAaNpXGbkWr39VtiweGcKXk.css" media="print">-->
     <!--<link rel="stylesheet" href="http://www.ox.ac.uk/sites/files/oxford/css/css_gASP_B8RgQX0yx9HZxsIna_OO4nlJOPS2isLvVL4V6o.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="widget/contact_search.css">
 </head>
 
 
@@ -26,8 +26,9 @@
       prefill : {               //provide this object to perform a search immediately
           lastname : "Smith",
           initial : "J",
-          match : "approximate",       // defaults to 'exact'
-          medium : "phone"      // 'phone' or 'email'
+          match : "approximate",    // defaults to 'exact'
+          medium : "email",         // 'phone' or 'email'
+          pageSize : 5              // defaults to 10
       }
     };
     contact_search.create_form(params);
