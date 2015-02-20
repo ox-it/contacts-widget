@@ -225,7 +225,8 @@ var contact_search =
 
         //show current page on pagination links
         $('a.page-link').removeClass('isCurrent');
-        $('a#page_' + i).addClass('isCurrent');
+        var $currentPageLink = $('#page_' + startPage);
+        $currentPageLink.addClass('isCurrent');
         $('.currentPage').text(startPage+1);
 
         //disable prev/next links as appropriate
@@ -242,6 +243,9 @@ var contact_search =
         } else {
             $next.attr('href', '#');
         }
+
+        //only show 10 links
+
     }
 
 

@@ -92,3 +92,26 @@ div .contact-results ul li .person_phone dl dd {
 div .contact-results ul li .person_email {
   margin-right: 5%;
 }
+
+/* line 97, contact_search.scss */
+.page-links {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 100%;
+  overflow: none;
+}
+/* line 103, contact_search.scss */
+.page-links a {
+  padding: 0px 2px;
+  display: inline-block;
+}
+/* line 106, contact_search.scss */
+.page-links a.isCurrent {
+  color: inherit;
+}
+
+/* line 111, contact_search.scss */
+.results-pages {
+  text-align: center;
+}

@@ -93,3 +93,21 @@ div {
     }
   }
 }
+
+.page-links {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 100%;
+  overflow: none;
+  a {
+    padding: 0px 2px;
+    display: inline-block;
+    &.isCurrent {
+      color: inherit;
+    }
+  }
+}
+.results-pages {
+  text-align: center;
+}
