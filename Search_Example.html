@@ -23,12 +23,13 @@
       el : $('#mycontactdiv'),   //div in which to place the contact search widget
 //      url : 'http://staging.api.m.ox.ac.uk/contact/search?', //optionally override the url used for search
 //        url : 'http://localhost:5000/contact/search?',
+          pageSize : 5,              // defaults to 10
       prefill : {               //provide this object to perform a search immediately
           lastname : "Smith",
           initial : "J",
           match : "approximate",    // defaults to 'exact'
           medium : "email",         // 'phone' or 'email'
-          pageSize : 5              // defaults to 10
+
       }
     };
     contact_search.create_form(params);
