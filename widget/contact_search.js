@@ -244,8 +244,6 @@ var contact_search =
             $next.attr('href', '#');
         }
 
-        //only show 10 links
-
     }
 
 
