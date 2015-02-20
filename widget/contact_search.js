@@ -19,8 +19,6 @@ var contact_search =
                     console.error("Failed to retrieve contact results");
                 }
             });
-
-            console.log(query);
     },
     create_form : function (params) {
         this.el = params.el;
