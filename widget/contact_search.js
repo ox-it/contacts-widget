@@ -141,15 +141,20 @@ var contact_search =
             var $name = $("<div id='name-" + (i+1) + "' class='person_name'></div>");
             $name.append($("<h3>" + person.name + "<h3>"));
             $entry.append($name);
+
+            //container for unit and email, to keep those together on RHS
+            var $person_details = $("<div class=details></div>");
+            $entry.append($person_details);
             //unit
+            var unitText = person.unit ? person.unit : "    ";
             var $unit = $("<div id='unit-" + (i+1) + "' class='person_unit'></div>");
-            $unit.text(person.unit);
-            $entry.append($unit);
+            $unit.text(unitText);
+            $person_details.append($unit);
             //email
             if(person.email) {
                 var $email = $("<div id='email-" + (i+1) + "' class='person_email'></div>");
                 $email.append($("<a href='mailto:" + person.email + "'>" + person.email + "</a>"));
-                $entry.append($email);
+                $person_details.append($email);
             }
             //phone
             if(person.external_tel || person.internal_tel) {
