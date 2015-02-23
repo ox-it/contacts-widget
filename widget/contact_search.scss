@@ -36,6 +36,7 @@ div {
       border-top-style: solid;
       border-color: grey;
       border-width: 1px;
+      margin: 1px;
       li {
         list-style-type: none;
         border-bottom-style: solid;
@@ -46,19 +47,33 @@ div {
         &:last-of-type {
           border-bottom-style: none;
         }
+
         .person_name {
-          width: 45%;
+          width: 40%;
           float: left;
           h3 {
             font-weight: bold;
             font-size: 1em;
-            left: -5px;
-            position: relative;
-            margin: 5px 10px 0px 0px;
+//            left: -5px;
+//            position: relative;
+            margin: 5px 0px 0px 0px;
           }
         }
-        .person_unit {
-          margin-right: 5%;
+
+        .details {
+          text-align: left;
+          margin-left: 40%;
+          min-width: 30%;
+          min-height: 2em;
+          .person_unit {
+            text-align: left;
+            display: block;
+//            margin-right: 5%;
+          }
+          .person_email {
+//            margin-right: 5%;
+            word-break: break-all;
+          }
         }
         .person_phone {
           dl {
@@ -67,6 +82,7 @@ div {
               display: block;
               float: left;
               width: 40%;
+              clear: left;
             }
             dd {
               display: block;
@@ -75,9 +91,6 @@ div {
               margin-bottom: 0;
             }
           }
-        }
-        .person_email {
-          margin-right: 5%;
         }
       }
     }

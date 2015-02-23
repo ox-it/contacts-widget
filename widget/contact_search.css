@@ -39,8 +39,9 @@ div .contact-results ul {
   border-top-style: solid;
   border-color: grey;
   border-width: 1px;
+  margin: 1px;
 }
-/* line 39, contact_search.scss */
+/* line 40, contact_search.scss */
 div .contact-results ul li {
   list-style-type: none;
   border-bottom-style: solid;
@@ -48,50 +49,57 @@ div .contact-results ul li {
   border-width: 1px;
   clear: both;
 }
-/* line 46, contact_search.scss */
+/* line 47, contact_search.scss */
 div .contact-results ul li:last-of-type {
   border-bottom-style: none;
 }
-/* line 49, contact_search.scss */
+/* line 51, contact_search.scss */
 div .contact-results ul li .person_name {
-  width: 45%;
+  width: 40%;
   float: left;
 }
-/* line 52, contact_search.scss */
+/* line 54, contact_search.scss */
 div .contact-results ul li .person_name h3 {
   font-weight: bold;
   font-size: 1em;
-  left: -5px;
-  position: relative;
-  margin: 5px 10px 0px 0px;
+  margin: 5px 0px 0px 0px;
 }
-/* line 60, contact_search.scss */
-div .contact-results ul li .person_unit {
-  margin-right: 5%;
+/* line 63, contact_search.scss */
+div .contact-results ul li .details {
+  text-align: left;
+  margin-left: 40%;
+  min-width: 30%;
+  min-height: 2em;
 }
-/* line 64, contact_search.scss */
+/* line 68, contact_search.scss */
+div .contact-results ul li .details .person_unit {
+  text-align: left;
+  display: block;
+}
+/* line 73, contact_search.scss */
+div .contact-results ul li .details .person_email {
+  word-break: break-all;
+}
+/* line 79, contact_search.scss */
 div .contact-results ul li .person_phone dl {
   margin: 5px;
 }
-/* line 66, contact_search.scss */
+/* line 81, contact_search.scss */
 div .contact-results ul li .person_phone dl dt {
   display: block;
   float: left;
   width: 40%;
+  clear: left;
 }
-/* line 71, contact_search.scss */
+/* line 87, contact_search.scss */
 div .contact-results ul li .person_phone dl dd {
   display: block;
   margin-left: 10px;
   margin-right: 10%;
   margin-bottom: 0;
 }
-/* line 79, contact_search.scss */
-div .contact-results ul li .person_email {
-  margin-right: 5%;
-}
 
-/* line 87, contact_search.scss */
+/* line 100, contact_search.scss */
 .page-links {
   margin-left: auto;
   margin-right: auto;
@@ -99,17 +107,17 @@ div .contact-results ul li .person_email {
   width: 100%;
   overflow: none;
 }
-/* line 93, contact_search.scss */
+/* line 106, contact_search.scss */
 .page-links a {
   padding: 0px 2px;
   display: inline-block;
 }
-/* line 96, contact_search.scss */
+/* line 109, contact_search.scss */
 .page-links a.isCurrent {
   color: inherit;
 }
 
-/* line 101, contact_search.scss */
+/* line 114, contact_search.scss */
 .results-pages {
   text-align: center;
 }
