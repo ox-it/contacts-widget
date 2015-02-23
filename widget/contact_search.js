@@ -125,7 +125,8 @@ var contact_search =
         var $resultsHeader = $("<div class='results-header'></div>");
         $results.append($resultsHeader);
         $resultsHeader.append($("<h2>Results</h2>"));
-        $resultsHeader.append($("<p>Found " + response.persons.length + " entries</p>"));
+        var entriesNoun = response.persons.length ==1 ? ' entry' : ' entries'
+        $resultsHeader.append($("<p>Found " + response.persons.length + entriesNoun + "</p>"));
         var $list = $("<ul class='contact-results-list'></ul>");
         $results.append($list);
 
@@ -171,25 +172,28 @@ var contact_search =
             }
         }
 
-        //create page browsing links
-        var $pageLinks = $("<div class='page-links'></div>");
-        $results.append($pageLinks);
-        var $prevPage = $("<a class='prev-page-link' id='prev-page' href='#'>Prev</a>");
-        $prevPage.click(this.prevPage.bind(this));
-        var $nextPage = $("<a class='next-page-link' id='next-page' href='#'>Next</a>");
-        $nextPage.click(this.nextPage.bind(this));
-        $pageLinks.append($prevPage);
         this.numPages = Math.ceil(this.persons.length / this.pageSize);
-        for (var i=0; i<this.numPages; i++) {
-            var $link = $("<a class='page-link' id='page_" + i + "' href='#'>" + (i+1) + "</a>");
-            $link.click(this.onClickPageLink.bind(this));
-            $link.data('page', i);
-            $pageLinks.append($link);
+
+        if(this.numPages >1) {
+            //create page browsing links
+            var $pageLinks = $("<div class='page-links'></div>");
+            $results.append($pageLinks);
+            var $prevPage = $("<a class='prev-page-link' id='prev-page' href='#'>Prev</a>");
+            $prevPage.click(this.prevPage.bind(this));
+            var $nextPage = $("<a class='next-page-link' id='next-page' href='#'>Next</a>");
+            $nextPage.click(this.nextPage.bind(this));
+            $pageLinks.append($prevPage);
+            for (var i = 0; i < this.numPages; i++) {
+                var $link = $("<a class='page-link' id='page_" + i + "' href='#'>" + (i + 1) + "</a>");
+                $link.click(this.onClickPageLink.bind(this));
+                $link.data('page', i);
+                $pageLinks.append($link);
+            }
+            $pageLinks.append($nextPage);
+            var $pageCounter = ($("<div class='results-pages'> Page <span class='currentPage'>0</span> of " + this.numPages + "</p>"));
+            $results.append($pageCounter.clone());
+            $resultsHeader.append($pageCounter);
         }
-        $pageLinks.append($nextPage);
-        var $pageCounter = ($("<div class='results-pages'> Page <span class='currentPage'>0</span> of " + this.numPages + "</p>"));
-        $results.append($pageCounter.clone());
-        $resultsHeader.append($pageCounter);
 
         this.currentPage = 0;
 
@@ -216,6 +220,7 @@ var contact_search =
         this.currentPage = startPage;
 
         var first_shown_result = this.pageSize * startPage;
+        
         //hide all but the relevant results
         $('.person_entry').hide();
         //unhide the relevant ones
@@ -235,16 +240,20 @@ var contact_search =
         //disable prev/next links as appropriate
         var $prev = $('a.prev-page-link');
         if(this.currentPage == 0) {
-            $prev.removeAttr('href');
+            //$prev.removeAttr('href');
+            $prev.hide();
         } else {
-            $prev.attr('href', '#');
+            //$prev.attr('href', '#');
+            $prev.show();
         }
 
         var $next = $('a.next-page-link');
         if(this.currentPage >= this.numPages-1) {
-            $next.removeAttr('href');
+            //$next.removeAttr('href');
+            $next.hide();
         } else {
-            $next.attr('href', '#');
+            //$next.attr('href', '#');
+            $next.show();
         }
 
     }
