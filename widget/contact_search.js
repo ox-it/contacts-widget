@@ -82,16 +82,20 @@ var contact_search =
         $phoneButton.data('medium', 'phone');
         $submit_buttons.append($emailButton).append($phoneButton);
 
+        //container for results
+        var $results = $("<div class='contact-results'></div>");
 
         var $emergency = $('<div class="emergency-nums"></div>');
         var $emergency_link = $('<a href="http://www.admin.ox.ac.uk/ouss/contactus/" name="emergency_numbers" title="Emergency numbers" id="emergency_numbers">');
         $emergency_link.append($('<span class="exclamation"></span>Emergency numbers</a>'));
         $emergency.append($emergency_link);
 
-        $form.append($name_details_container).append($search_specifics).append($submit_buttons).append($emergency);
+        $form.append($name_details_container).append($search_specifics).append($submit_buttons);
         $form_container.append($form);
 
         this.el.append($form_container);
+        this.el.append($results);
+        this.el.append($emergency);
 
         this.bind_events();
 
@@ -140,22 +144,14 @@ var contact_search =
         this.persons = response.persons;
         //create results div if it doesn't already exist
         var $results = $('.contact-results', this.el);
-        if($results.length <= 0) {
-            var $results = $("<div class='contact-results'></div>");
-            //add the list to the widget
-            this.el.append($results);
-        }
-        else {
-            $results.empty();
-        }
+        $results.empty();
         var $resultsHeader = $("<div class='results-header'></div>");
         $results.append($resultsHeader);
         $resultsHeader.append($("<h2>Results</h2>"));
         var entriesNoun = response.persons.length ==1 ? ' entry' : ' entries'
-        $resultsHeader.append($("<p>Found " + response.persons.length + entriesNoun + "</p>"));
+        $resultsHeader.append($("Found " + response.persons.length + entriesNoun + ""));
         var $list = $("<ul class='contact-results-list'></ul>");
         $results.append($list);
-
 
         //populate table
         for(var i=0; i<response.persons.length; i++) {
@@ -216,10 +212,11 @@ var contact_search =
                 $pageLinks.append($link);
             }
             $pageLinks.append($nextPage);
-            var $pageCounter = ($("<div class='results-pages'> Page <span class='currentPage'>0</span> of " + this.numPages + "</p>"));
+            var $pageCounter = ($("<div class='results-pages'> Page <span class='currentPage'>0</span> of " + this.numPages + "</div>"));
             $results.append($pageCounter.clone());
             $resultsHeader.append($pageCounter);
         }
+        $results.append($("<div class='details-incorrect'><a href='http://www.ox.ac.uk/staff/working_at_oxford/how_do_I/update_my_details'>Contact details incorrect?</a></div>"));
 
         this.currentPage = 0;
 

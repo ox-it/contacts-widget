@@ -2,7 +2,6 @@
 
 div {
   .contactsearch {
-    padding: 10px;
     .form-item {
       margin: 5px;
       input {
@@ -12,8 +11,8 @@ div {
   }
 
   .contact-results {
-    margin: 2px;
-    padding: 5px;
+    margin: 0px 2px;
+    padding: 0px 5px;
     font-size: 80%;
     .results-header {
       h2 {
@@ -108,5 +107,9 @@ div {
   }
 }
 .results-pages {
+  text-align: center;
+}
+
+.details-incorrect {
   text-align: center;
 }
