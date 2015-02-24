@@ -94,7 +94,7 @@ var contact_search =
             //Add a data attribute to the form based on the clicked button
             var medium = $(this).val();
             $(this).parents('form').data('medium', $(this).data('medium'));
-        })
+        });
 
         //form submit
         $('#contact_form').submit(function(ev) {
@@ -202,7 +202,7 @@ var contact_search =
     },
     prevPage : function(ev) {
         ev.preventDefault();
-        this.currentPage--
+        this.currentPage--;
         this.displayResultsPage(this.currentPage);
     },
     nextPage : function(ev) {
