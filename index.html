@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <head>
-    <script src="widget/contact_search.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!--<script src="lib/jquery-migrate-1.2.1.js"></script>-->
     <script src="lib/jquery.xdomainrequest.min.js"></script>
+    <script src="widget/contact_search.js"></script>
     <link rel="stylesheet" href="widget/contact_search.css">
-    <script type="text/javascript">
-        var params = {
-            el : $('#mycontactdiv'),   //div in which to place the contact search widget
-            url: 'http://api-mox-staging.oucs.ox.ac.uk/contact/search?',
-            pageSize : 5,              // defaults to 10
-            prefill : {               //provide this object to perform a search immediately
-                lastname : "Smith",
-                initial : "J",
-                match : "approximate",    // defaults to 'exact'
-                medium : "email",         // 'phone' or 'email'
-
-            }
-        };
-        contact_search.create_form(params);
-    </script>
 </head>
 
 
@@ -31,6 +16,21 @@
 <div id="mycontactdiv"></div>
 </div>
 
+<script type="text/javascript">
+    var params = {
+      el : $('#mycontactdiv'),   //div in which to place the contact search widget
+          url: 'http://api-mox-staging.oucs.ox.ac.uk/contact/search?',
+          pageSize : 5,              // defaults to 10
+      prefill : {               //provide this object to perform a search immediately
+          lastname : "Smith",
+          initial : "J",
+          match : "approximate",    // defaults to 'exact'
+          medium : "email",         // 'phone' or 'email'
+
+      }
+    };
+    contact_search.create_form(params);
+</script>
 
 
 </body>
