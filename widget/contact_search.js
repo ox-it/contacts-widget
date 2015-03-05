@@ -49,7 +49,7 @@
       create_form : function (params) {
           this.el = params.el;
           this.prefill = params.prefill;
-          this.url = params.url? params.url : 'http://api.m.ox.ac.uk/contact/search?';
+          this.url = params.url? params.url : '//api.m.ox.ac.uk/contact/search?';
           this.pageSize = params.pageSize ? params.pageSize : 10;
 
           var $form_container = $("<div class='contactsearch'></div>");
@@ -86,7 +86,7 @@
           var $results = $("<div class='contact-results'></div>");
 
           var $emergency = $('<div class="emergency-nums"></div>');
-          var $emergency_link = $('<a href="http://www.admin.ox.ac.uk/ouss/contactus/" name="emergency_numbers" title="Emergency numbers" id="emergency_numbers">');
+          var $emergency_link = $('<a href="//www.admin.ox.ac.uk/ouss/contactus/" name="emergency_numbers" title="Emergency numbers" id="emergency_numbers">');
           $emergency_link.append($('<span class="exclamation"></span>Emergency numbers</a>'));
           $emergency.append($emergency_link);
 
@@ -214,7 +214,7 @@
               $results.append($pageCounter.clone());
               $resultsHeader.append($pageCounter);
           }
-          $results.append($("<div class='details-incorrect'><a href='http://www.ox.ac.uk/staff/working_at_oxford/how_do_I/update_my_details'>Contact details incorrect?</a></div>"));
+          $results.append($("<div class='details-incorrect'><a href='//www.ox.ac.uk/staff/working_at_oxford/how_do_I/update_my_details'>Contact details incorrect?</a></div>"));
 
           this.currentPage = 0;
 
