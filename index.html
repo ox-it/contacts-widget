@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="widget/contact_search.css">
 </head>
 
-
-
 <body>
 
 <h1>Oxford University Contact Search widget example</h1>
@@ -21,13 +19,14 @@
       el : $('#mycontactdiv'),   //div in which to place the contact search widget
           url: 'http://api-mox-staging.oucs.ox.ac.uk/contact/search?',
           pageSize : 5,              // defaults to 10
-      prefill : {               //provide this object to perform a search immediately
-          lastname : "Smith",
-          initial : "J",
-          match : "approximate",    // defaults to 'exact'
-          medium : "email",         // 'phone' or 'email'
-
-      }
+//      prefill : {               //provide this object to perform a search immediately
+//          lastname : "Smith",
+//          initial : "J",
+//          match : "approximate",    // defaults to 'exact'
+//          medium : "email",         // 'phone' or 'email'
+//
+//      }
+        autofocus: true,            //focus input on the widget
     };
     contact_search.create_form(params);
 </script>

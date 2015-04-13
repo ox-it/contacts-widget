@@ -116,6 +116,11 @@ var contact_search =
             if(!params.prefill.medium) { params.prefill.medium = 'email' }
             this.search(params.prefill);
         }
+
+        if(params.autofocus) {
+            //put the firstname field into focus
+            $('input#lastname', this.el).focus();
+        }
     },
 
     bind_events : function () {
