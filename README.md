@@ -32,6 +32,10 @@ Insert a script to create the search widget:
           pageSize: 5,
             //optionally override the number of contact results shown per page
             //defaults to 10
+            
+          autofocus: true,
+            //optionally specifies whether the lastname input field should be automatically selected on creation.
+            //defaults to false
         }
 
         //create the widget
