@@ -62,7 +62,7 @@
           $lastname_container.append($("<input class='full' type='text' name='lastname' id='lastname' placeholder='E.g. Smith' value=''>"));
 
           var $initial_container = $("<div class='initial-container'></div>");
-          $initial_container.append($("<label for'initial' class='optional'>Initial</label>"));
+          $initial_container.append($("<label for='initial' class='optional'>Initial</label>"));
           $initial_container.append($("<input class='full' type='text' name='initial' id='initial' placeholder='E.g. J' value=''>"));
 
           $name_details_container.append($lastname_container).append($initial_container);
