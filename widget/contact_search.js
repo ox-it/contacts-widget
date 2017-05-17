@@ -68,14 +68,14 @@
           $name_details_container.append($lastname_container).append($initial_container);
 
           var $search_specifics = $("<div class='form-item search-specifics'></div>");
-	  var $search_specifics_fieldset = $("<fieldset></fieldset>");
+          var $search_specifics_fieldset = $("<fieldset></fieldset>");
           var $exact1_radio = $("<label for='exact1' class='radio'>Exact</label>");
           $exact1_radio.prepend($("<input type='radio' name='exact' class='radio' value='true' id='exact1' checked='checked'>"));
 
           var $exact2_radio = $("<label for='exact2' class='radio_second'>Approximate</label>");
           $exact2_radio.prepend($("<input type='radio' name='exact' class='radio' value='false' id='exact2'>"));
-	  $search_specifics_fieldset.append($exact1_radio).append($exact2_radio);
-	  $search_specifics.append($search_specifics_fieldset);
+          $search_specifics_fieldset.append($exact1_radio).append($exact2_radio);
+          $search_specifics.append($search_specifics_fieldset);
 
           var $submit_buttons = $("<div class='form-item'></div>");
           var $emailButton = $("<input type='submit' name='find_email' alt='Find email address' value='Email'>");
